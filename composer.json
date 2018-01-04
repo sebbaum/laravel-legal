@@ -1,0 +1,36 @@
+{
+  "name": "sebbaum/tos-manager",
+  "type": "library",
+  "description": "A Laravel package to integrate and maintain Terms of Service into your Laravel App",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Sebastian Baum",
+      "email": "seb.baum@googlemail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "illuminate/support": "^5.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sebbaum\\Tos\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Sebbaum\\Tos\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Sebbaum\\Tos\\TosServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
