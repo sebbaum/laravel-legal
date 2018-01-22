@@ -18,6 +18,7 @@ class LegalServiceProvider extends BaseServiceProvider
     {
         $this->addRoutes();
         $this->addResources();
+        $this->addMigrations();
     }
 
     /**
@@ -40,6 +41,14 @@ class LegalServiceProvider extends BaseServiceProvider
     private function addResources()
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'legal');
+    }
+
+    /**
+     * Add the migrations for this package.
+     */
+    private function addMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
     }
 
     /**
