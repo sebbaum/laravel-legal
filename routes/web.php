@@ -9,3 +9,7 @@ Route::get('/terms-of-service', function () {
 Route::get('/privacy-policy', function () {
     return view('legal::pripol');
 })->name('pripol');
+
+Route::get('/gtc', function () {
+    return view('legal::gtc');
+})->name('gtc');
