@@ -19,6 +19,7 @@ class LegalServiceProvider extends BaseServiceProvider
         $this->addRoutes();
         $this->addResources();
         $this->addMigrations();
+        $this->defineAssetPublishing();
     }
 
     /**
@@ -49,6 +50,18 @@ class LegalServiceProvider extends BaseServiceProvider
     private function addMigrations()
     {
         $this->loadMigrationsFrom(__DIR__.'/../migrations');
+    }
+
+    /**
+     * Define the asset publishing configuration.
+     *
+     * @return void
+     */
+    public function defineAssetPublishing()
+    {
+        $this->publishes([
+            __DIR__ . '/../public' => public_path('vendor/legal'),
+        ], 'legal-assets');
     }
 
     /**
