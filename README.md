@@ -1,4 +1,4 @@
-# TOS Manager
+# Legal
 
 ## Development Integration
 In order to use this package for development purpose add the following to composer.json
@@ -8,12 +8,12 @@ In order to use this package for development purpose add the following to compos
     "fideloper/proxy": "~3.3",
     "laravel/framework": "5.5.*",
     "laravel/tinker": "~1.0",
-    "sebbaum/tos-manager": "*"
+    "sebbaum/legal": "*"
   },
   "repositories": [
     {
       "type":"path",
-      "url":"/path/to/tos-manager"
+      "url":"/path/to/legal"
     }
   ],
 ```
@@ -22,4 +22,4 @@ In order to use this package for development purpose add the following to compos
 * laravel-packages/
     * laravel
     * packages
-        * tos-manager
+        * legal

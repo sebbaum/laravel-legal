@@ -1,11 +1,11 @@
 <?php
 
-namespace Sebbaum\Tos;
+namespace Sebbaum\Legal;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-class TosServiceProvider extends BaseServiceProvider
+class LegalServiceProvider extends BaseServiceProvider
 {
 
     /**
@@ -23,8 +23,8 @@ class TosServiceProvider extends BaseServiceProvider
     private function addRoutes()
     {
         Route::group([
-            'prefix' => config('tos.uri', 'tos'),
-            'namespace' => 'Sebbaum\Tos\Http\Controllers',
+            'prefix' => config('legal.uri', 'legal'),
+            'namespace' => 'Sebbaum\Legal\Http\Controllers',
             'middleware' => 'web'
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
@@ -36,7 +36,7 @@ class TosServiceProvider extends BaseServiceProvider
      */
     private function addResources()
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'tos');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'legal');
     }
 
     /**
@@ -53,7 +53,7 @@ class TosServiceProvider extends BaseServiceProvider
      */
     private function configure()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/tos.php', 'tos');
+        $this->mergeConfigFrom(__DIR__ . '/../config/legal.php', 'legal');
     }
 
     /**
@@ -62,11 +62,11 @@ class TosServiceProvider extends BaseServiceProvider
     private function publishFiles()
     {
         $this->publishes([
-            __DIR__ . '/../config/tos.php' => config_path('tos.php')
-        ], 'tos-config');
+            __DIR__ . '/../config/legal.php' => config_path('legal.php')
+        ], 'legal-config');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/tos'),
-        ], 'tos-views');
+            __DIR__.'/../resources/views' => resource_path('views/vendor/legal'),
+        ], 'legal-views');
     }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "sebbaum/tos-manager",
+  "name": "sebbaum/legal",
   "type": "library",
   "description": "A Laravel package to integrate and maintain Terms of Service into your Laravel App",
   "version": "0.1.0",
@@ -16,18 +16,18 @@
   },
   "autoload": {
     "psr-4": {
-      "Sebbaum\\Tos\\": "src/"
+      "Sebbaum\\Legal\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Sebbaum\\Tos\\Tests\\": "tests/"
+      "Sebbaum\\Legal\\Tests\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Sebbaum\\Tos\\TosServiceProvider"
+        "Sebbaum\\Legal\\LegalServiceProvider"
       ]
     }
   },
