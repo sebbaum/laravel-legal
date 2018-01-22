@@ -9,7 +9,10 @@ class LegalServiceProvider extends BaseServiceProvider
 {
 
     /**
-     * Boot the Package.
+     * Bootstrap any application services.
+     * This method is called after all other service providers have been registered.
+     *
+     * @return void
      */
     public function boot()
     {
@@ -32,7 +35,7 @@ class LegalServiceProvider extends BaseServiceProvider
     }
 
     /**
-     * Add the views for this package.
+     * Add the view resources for this package.
      */
     private function addResources()
     {
@@ -40,7 +43,9 @@ class LegalServiceProvider extends BaseServiceProvider
     }
 
     /**
-     * Do registration stuff.
+     * Register bindings in the container.
+     *
+     * @return void
      */
     public function register()
     {
