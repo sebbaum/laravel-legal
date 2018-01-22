@@ -2,6 +2,6 @@
 
 @section('content')
   <div class="container">
-    <h1>Terms Of Service</h1>
+    <h1>Privacy Policy</h1>
   </div>
 @endsection
