@@ -1,5 +1,13 @@
 # Legal
 
+## Usage
+### Include the legal footer
+In order to show links to your legal documents, you can include the `legal::footer` template in your own templates
+(e.g. in `layouts/app.blade.php`)
+```
+@include('legal::footer')
+```
+
 ## Development Integration
 In order to use this package for development purpose add the following to composer.json
 ```
