@@ -19,6 +19,7 @@ class LegalServiceProvider extends BaseServiceProvider
         $this->addRoutes();
         $this->addResources();
         $this->addMigrations();
+        $this->addTranslations();
         $this->defineAssetPublishing();
     }
 
@@ -50,6 +51,11 @@ class LegalServiceProvider extends BaseServiceProvider
     private function addMigrations()
     {
         $this->loadMigrationsFrom(__DIR__.'/../migrations');
+    }
+
+    private function addTranslations()
+    {
+        $this->loadTranslationsFrom(__DIR__.'/../translations', 'legal');
     }
 
     /**
@@ -95,5 +101,9 @@ class LegalServiceProvider extends BaseServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/legal'),
         ], 'legal-views');
+
+        $this->publishes([
+            __DIR__ . '/../translations' => resource_path('lang/vendor/legal')
+        ], 'legal-translations');
     }
 }
