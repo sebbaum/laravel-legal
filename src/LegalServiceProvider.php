@@ -55,7 +55,7 @@ class LegalServiceProvider extends BaseServiceProvider
 
     private function addTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__.'/../translations', 'legal');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'legal');
     }
 
     /**
@@ -103,7 +103,7 @@ class LegalServiceProvider extends BaseServiceProvider
         ], 'legal-views');
 
         $this->publishes([
-            __DIR__ . '/../translations' => resource_path('lang/vendor/legal')
-        ], 'legal-translations');
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/legal')
+        ], 'legal-lang');
     }
 }
