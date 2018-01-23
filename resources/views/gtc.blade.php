@@ -2,6 +2,6 @@
 
 @section('content')
   <div class="container">
-    <h1>General Standard Terms And Conditions </h1>
+    <h1>@lang('legal::legal.gtc_long')</h1>
   </div>
 @endsection

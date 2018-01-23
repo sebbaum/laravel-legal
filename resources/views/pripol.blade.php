@@ -2,6 +2,6 @@
 
 @section('content')
   <div class="container">
-    <h1>Privacy Policy</h1>
+    <h1>@lang('legal::legal.pripol')</h1>
   </div>
 @endsection
