@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'tos' => 'Nutzungsbedingungen',
+    'tos' => 'Allgemeine Geschäftsbedingungen',
+    'tos_short' => 'AGB',
     'pripol' => 'Datenschutzerklärung',
-    'gtc' => 'AGB',
     'imprint' => 'Impressum'
 ];

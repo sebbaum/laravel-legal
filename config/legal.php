@@ -36,17 +36,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | GTC (general standard terms and conditions)
-    |--------------------------------------------------------------------------
-    |
-    | Enable general standard terms and conditions.
-    | If you have to show general standard terms and conditions, then set this to true.
-    |
-    */
-    'gtc' => true,
-
-    /*
-    |--------------------------------------------------------------------------
     | Imprint
     |--------------------------------------------------------------------------
     |
