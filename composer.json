@@ -1,7 +1,7 @@
 {
   "name": "sebbaum/legal",
   "type": "library",
-  "description": "A Laravel package to integrate and maintain Terms of Service into your Laravel App",
+  "description": "A Laravel package to integrate and maintain legal requirements",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "authors": [
