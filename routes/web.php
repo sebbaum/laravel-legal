@@ -17,3 +17,7 @@ Route::get('/gtc', function () {
 Route::get('/imprint', function () {
     return view('legal::imprint');
 })->name('imprint');
+
+Route::get('editor', function () {
+    return view('legal::editor');
+})->name('editor');
