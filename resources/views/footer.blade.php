@@ -10,7 +10,10 @@
   @endif
 
   @if(config('legal.gtc'))
-    <a href="{{ route('gtc') }}">@lang('legal::legal.gtc')</a>
+    <a href="{{ route('gtc') }}">@lang('legal::legal.gtc')</a><br>
   @endif
 
+  @if(config('legal.imprint'))
+    <a href="{{ route('imprint') }}">@lang('legal::legal.imprint')</a>
+  @endif
 </div>

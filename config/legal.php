@@ -14,7 +14,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable Terms Of Service
+    | Terms Of Service
     |--------------------------------------------------------------------------
     |
     | Enable Terms Of Service.
@@ -25,7 +25,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable Privacy Policy
+    | Privacy Policy
     |--------------------------------------------------------------------------
     |
     | Enable Privacy Policy
@@ -36,7 +36,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable GTC (general standard terms and conditions)
+    | GTC (general standard terms and conditions)
     |--------------------------------------------------------------------------
     |
     | Enable general standard terms and conditions.
@@ -44,4 +44,15 @@ return [
     |
     */
     'gtc' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Imprint
+    |--------------------------------------------------------------------------
+    |
+    | Enable an imprint.
+    | If you have to show an imprint, then set this to true.
+    |
+    */
+    'imprint' => true,
 ];

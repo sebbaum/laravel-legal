@@ -13,3 +13,7 @@ Route::get('/privacy-policy', function () {
 Route::get('/gtc', function () {
     return view('legal::gtc');
 })->name('gtc');
+
+Route::get('/imprint', function () {
+    return view('legal::imprint');
+})->name('imprint');
