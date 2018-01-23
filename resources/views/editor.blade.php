@@ -8,11 +8,11 @@
 </head>
 <body>
 
-<form>
-  <textarea>
+<div id="legalApp">
+  <h1>Legal Editor</h1>
+  <editor></editor>
 
-  </textarea>
-</form>
+</div>
 
 <script src="{{ asset('vendor/legal/js/legal.js') }}"></script>
 </body>

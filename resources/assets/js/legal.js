@@ -1,3 +1,11 @@
-const SimpleMDE = require('simplemde');
+const Vue = require('vue');
+const Editor = require('./Components/Editor.vue');
 
-let simplemde = new SimpleMDE();
+
+
+let vm = new Vue({
+  el: '#legalApp',
+  components: {
+    editor: Editor
+  }
+});
