@@ -10,6 +10,13 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Legal Editor</a>
+  <ul class="navbar-nav mr-auto">
+
+    <li class="nav-item">
+      <a class="nav-link" href="/">Your site</a>
+    </li>
+
+  </ul>
 </nav>
 <div id="legalApp" class="container-fluid">
 
