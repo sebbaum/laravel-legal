@@ -35,6 +35,13 @@ class LegalServiceProvider extends BaseServiceProvider
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         });
+
+        Route::group([
+            'prefix' => config('legal.api', 'legal/api'),
+            'namespace' => 'Sebbaum\Legal\Http\Controllers'
+        ], function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        });
     }
 
     /**

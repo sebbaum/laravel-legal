@@ -15,18 +15,30 @@
     data: () => {
       return {
         simplemde: null,
-        content: 'Terms Of Service'
+        api: null,
+        content: '# Terms Of Service'
       }
     },
 
     methods: {
-      save: () => {
+      save: function() {
         let newContent = this.simplemde.value();
         alert(newContent);
+        this.ping();
+      },
+
+      ping: function() {
+        this.api.get('/legal/api/ping')
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       }
     },
 
-    mounted: () => {
+    mounted: function() {
       const SimpleMDE = require('simplemde');
 
       this.simplemde = new SimpleMDE({
@@ -38,6 +50,9 @@
         element: document.getElementById("editor"),
         spellChecker: false
       });
+
+
+      this.api = require('axios');
 
     }
   };
