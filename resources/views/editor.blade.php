@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div id="legalApp">
+<div id="legalApp" class="container-fluid">
   <h1>Legal Editor</h1>
   <editor></editor>
 
