@@ -1,3 +1,5 @@
+import 'bootstrap';
+
 const Vue = require('vue');
 const Editor = require('./Components/Editor.vue');
 

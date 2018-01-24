@@ -3,6 +3,7 @@
     <textarea id="editor">
 
     </textarea>
+    <button type="submit" class="btn btn-dark" name="save">Save</button>
   </form>
 
 </template>
@@ -23,7 +24,7 @@
       let simplemde = new SimpleMDE({
         autosave: {
           enabled: true,
-          uniqueId: "MyUniqueID",
+          uniqueId: "legal::editor",
           delay: 1000,
         },
         element: document.getElementById("editor"),

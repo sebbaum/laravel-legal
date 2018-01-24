@@ -14,7 +14,8 @@ let mix = require('laravel-mix');
 mix
   .js('resources/assets/js/legal.js', 'public/js')
   .sass('resources/assets/sass/legal.scss', 'public/css')
-  .copyDirectory('public/js', '../../laravel/public/vendor/legal/js'); // for development only
+  .copyDirectory('public/js', '../../laravel/public/vendor/legal/js') // for development only
+  .copyDirectory('public/css', '../../laravel/public/vendor/legal/css'); // for development only
 
 /*
 |-----------------------------------------------------------------------
