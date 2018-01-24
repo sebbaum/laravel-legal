@@ -1,6 +1,6 @@
 <template>
-  <form>
-    <textarea id="editor">
+  <form @submit.prevent="save">
+    <textarea id="editor" v-model="text">
 
     </textarea>
     <button type="submit" class="btn btn-dark" name="save">Save</button>
@@ -12,16 +12,24 @@
 <script>
   module.exports = {
 
-    data: function () {
+    data: () => {
       return {
-        //
+        simplemde: null,
+        content: 'Terms Of Service'
+      }
+    },
+
+    methods: {
+      save: () => {
+        let newContent = this.simplemde.value();
+        alert(newContent);
       }
     },
 
     mounted: () => {
       const SimpleMDE = require('simplemde');
 
-      let simplemde = new SimpleMDE({
+      this.simplemde = new SimpleMDE({
         autosave: {
           enabled: true,
           uniqueId: "legal::editor",
@@ -30,6 +38,7 @@
         element: document.getElementById("editor"),
         spellChecker: false
       });
+
     }
   };
 </script>

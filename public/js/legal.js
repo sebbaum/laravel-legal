@@ -39296,6 +39296,8 @@ module.exports = function normalizeComponent (
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var _this = this;
+
 //
 //
 //
@@ -39312,14 +39314,22 @@ module.exports = {
 
   data: function data() {
     return {
-      //
+      simplemde: null,
+      content: 'Terms Of Service'
     };
+  },
+
+  methods: {
+    save: function save() {
+      var newContent = _this.simplemde.value();
+      alert(newContent);
+    }
   },
 
   mounted: function mounted() {
     var SimpleMDE = __webpack_require__(17);
 
-    var simplemde = new SimpleMDE({
+    _this.simplemde = new SimpleMDE({
       autosave: {
         enabled: true,
         uniqueId: "legal::editor",
@@ -46529,15 +46539,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("form", [
-      _c("textarea", { attrs: { id: "editor" } }),
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          _vm.save($event)
+        }
+      }
+    },
+    [
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.text,
+            expression: "text"
+          }
+        ],
+        attrs: { id: "editor" },
+        domProps: { value: _vm.text },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.text = $event.target.value
+          }
+        }
+      }),
       _vm._v(" "),
       _c(
         "button",
@@ -46547,9 +46579,10 @@ var staticRenderFns = [
         },
         [_vm._v("Save")]
       )
-    ])
-  }
-]
+    ]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
