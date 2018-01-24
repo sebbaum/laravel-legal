@@ -3,5 +3,5 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('ping', function () {
-    return 'pong';
+    return '# PING - PONG: Response from Server';
 });

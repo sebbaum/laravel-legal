@@ -1,44 +1,56 @@
 <template>
-  <form @submit.prevent="save">
-    <textarea id="editor" v-model="content">
+  <div>
+    <form @submit.prevent="save">
+      <textarea id="editor" v-model="content"></textarea>
+      <button type="submit" class="btn btn-dark" name="save">Save</button>
+    </form>
 
-    </textarea>
-    <button type="submit" class="btn btn-dark" name="save">Save</button>
-  </form>
+    <h3>Output</h3>
+    <div id="output" v-html="marked">{{ marked }}</div>
+  </div>
 
 </template>
 
 
 <script>
+  const marked = require('marked');
+
   module.exports = {
 
-    data: () => {
+    data: function() {
       return {
         simplemde: null,
         api: null,
-        content: '# Terms Of Service'
+        content: '# Terms Of Service',
+      }
+    },
+
+    computed: {
+      marked: function() {
+        return marked(this.content)
       }
     },
 
     methods: {
-      save: function() {
+      save: function () {
         let newContent = this.simplemde.value();
-        alert(newContent);
         this.ping();
       },
 
-      ping: function() {
+      ping: function () {
         this.api.get('/legal/api/ping')
-          .then(function (response) {
-            console.log(response);
+          .then(response => {
+            console.log(response.data);
+            this.content = response.data;
+            this.simplemde.value(response.data);
           })
-          .catch(function (error) {
+          .catch(error => {
             console.log(error);
           });
       }
     },
 
-    mounted: function() {
+    mounted: function () {
       const SimpleMDE = require('simplemde');
 
       this.simplemde = new SimpleMDE({
