@@ -46555,18 +46555,18 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.text,
-            expression: "text"
+            value: _vm.content,
+            expression: "content"
           }
         ],
         attrs: { id: "editor" },
-        domProps: { value: _vm.text },
+        domProps: { value: _vm.content },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.text = $event.target.value
+            _vm.content = $event.target.value
           }
         }
       }),

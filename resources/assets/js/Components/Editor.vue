@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="save">
-    <textarea id="editor" v-model="text">
+    <textarea id="editor" v-model="content">
 
     </textarea>
     <button type="submit" class="btn btn-dark" name="save">Save</button>
