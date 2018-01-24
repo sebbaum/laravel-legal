@@ -8,8 +8,11 @@
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Legal Editor</a>
+</nav>
 <div id="legalApp" class="container-fluid">
-  <h1>Legal Editor</h1>
+
   <editor></editor>
 
 </div>
