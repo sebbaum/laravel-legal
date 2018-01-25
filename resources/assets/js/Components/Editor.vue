@@ -4,16 +4,13 @@
       <textarea id="editor" v-model="content"></textarea>
       <button type="submit" class="btn btn-dark" name="save">Save</button>
     </form>
-
-    <h3>Output</h3>
-    <div id="output" v-html="marked">{{ marked }}</div>
+    <flash-message class="flashMessage"></flash-message>
   </div>
 
 </template>
 
 
 <script>
-  const marked = require('marked');
 
   module.exports = {
 
@@ -25,29 +22,38 @@
       }
     },
 
-    computed: {
-      marked: function() {
-        return marked(this.content)
-      }
-    },
-
     methods: {
       save: function () {
         let newContent = this.simplemde.value();
-        this.ping();
-      },
-
-      ping: function () {
-        this.api.get('/legal/api/ping')
+        this.api.post('/legal/api/tos', {
+          content: this.content
+        })
           .then(response => {
-            console.log(response.data);
-            this.content = response.data;
-            this.simplemde.value(response.data);
+            this.flash('Document saved', 'success');
           })
           .catch(error => {
-            console.log(error);
+            // console.log(error);
+            this.fm('Document could not be saved', 'error');
           });
+      },
+
+      fm: function (message, type) {
+        this.flash(message, type, {
+          timeout: 5000
+        })
       }
+
+      // ping: function () {
+      //   this.api.get('/legal/api/ping')
+      //     .then(response => {
+      //       console.log(response.data);
+      //       this.content = response.data;
+      //       this.simplemde.value(response.data);
+      //     })
+      //     .catch(error => {
+      //       console.log(error);
+      //     });
+      // }
     },
 
     mounted: function () {
@@ -62,7 +68,6 @@
         element: document.getElementById("editor"),
         spellChecker: false
       });
-
 
       this.api = require('axios');
 
