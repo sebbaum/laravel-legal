@@ -4,12 +4,14 @@ namespace Sebbaum\Legal\Http\Controllers;
 
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Routing\Controller;
+use Sebbaum\Legal\Models\Document;
 
 class LegalController extends Controller
 {
     public function tos()
     {
-        $content = Markdown::convertToHtml('# Markdown from **server**');
+        $document = Document::latest()->first();
+        $content = Markdown::convertToHtml($document->content);
         return view('legal::tos', ['content' => $content]);
     }
 

@@ -1,6 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="save">
+      <input type="hidden" v-model="id" name="id"/>
       <textarea id="editor" v-model="content"></textarea>
       <button type="submit" class="btn btn-dark" name="save">Save</button>
     </form>
@@ -18,6 +19,8 @@
       return {
         simplemde: null,
         api: null,
+        id: '',
+        updated_at: Date.now(),
         content: '# Terms Of Service',
       }
     },
@@ -25,11 +28,15 @@
     methods: {
       save: function () {
         let newContent = this.simplemde.value();
-        this.api.post('/legal/api/document', {
-          content: this.content
+        // TODO send id to perform an update
+        this.api.post('/legal/api/documents', {
+          id: this.id,
+          content: newContent
         })
           .then(response => {
             this.fm('Document saved', 'success');
+            this.id = response.data.id;
+            this.content = response.data.content;
           })
           .catch(error => {
             // console.log(error);
@@ -42,18 +49,6 @@
           timeout: 5000
         })
       }
-
-      // ping: function () {
-      //   this.api.get('/legal/api/ping')
-      //     .then(response => {
-      //       console.log(response.data);
-      //       this.content = response.data;
-      //       this.simplemde.value(response.data);
-      //     })
-      //     .catch(error => {
-      //       console.log(error);
-      //     });
-      // }
     },
 
     mounted: function () {
@@ -71,6 +66,20 @@
 
       this.api = require('axios');
 
+      /*
+       * Fetch document
+       */
+      this.api.get('/legal/api/documents')
+        .then(response => {
+          console.log(response);
+          this.id = response.data.id;
+          this.content = response.data.content;
+          this.simplemde.value(response.data.content);
+        })
+        .catch(error => {
+          console.log(error);
+          this.fm('Document could not be loaded', 'error');
+        });
     }
   };
 </script>

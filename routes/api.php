@@ -2,9 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-//Route::get('ping', function () {
-//    return '# PING - PONG: Response from Server';
-//});
+/*
+|--------------------------------------------------------------------------
+| API routes for the legal management UI
+|--------------------------------------------------------------------------
+|
+*/
 
-Route::post('document', 'EditorController@store');
-Route::get('document/{doc}', 'EditorController@store');
+/**
+ * Store the document.
+ */
+Route::post('documents', 'EditorController@store');
+
+/**
+ * Get the document
+ */
+Route::get('documents', 'EditorController@fetchLatest');

@@ -13,26 +13,22 @@ class EditorController extends Controller
      * Store a newly created resource in storage.
      *
      * @param DocumentRequest $request
-     * @return void
+     * @return Response
      */
     public function store(DocumentRequest $request)
     {
-        Document::create($request->validated());
+        $document = Document::updateOrCreate(['id' => $request->input('id')], $request->all());
         // TODO: authorization
-        // TODO: persist
-        // TODO: response
+        return $document->toArray();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Document $doc
-     * @return void
+     * @return Response
      */
-    public function get(Document $doc)
+    public function fetchLatest()
     {
-        // TODO: authorization
-        // TODO: fetch
-        // TODO: response
+        return Document::latest()->first();
     }
 }

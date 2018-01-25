@@ -40001,6 +40001,7 @@ module.exports = function normalizeComponent (
 //
 //
 //
+//
 
 
 module.exports = {
@@ -40009,6 +40010,8 @@ module.exports = {
     return {
       simplemde: null,
       api: null,
+      id: '',
+      updated_at: Date.now(),
       content: '# Terms Of Service'
     };
   },
@@ -40018,10 +40021,14 @@ module.exports = {
       var _this = this;
 
       var newContent = this.simplemde.value();
-      this.api.post('/legal/api/document', {
-        content: this.content
+      // TODO send id to perform an update
+      this.api.post('/legal/api/documents', {
+        id: this.id,
+        content: newContent
       }).then(function (response) {
         _this.fm('Document saved', 'success');
+        _this.id = response.data.id;
+        _this.content = response.data.content;
       }).catch(function (error) {
         // console.log(error);
         _this.fm('Document could not be saved', 'error');
@@ -40033,21 +40040,11 @@ module.exports = {
         timeout: 5000
       });
     }
-
-    // ping: function () {
-    //   this.api.get('/legal/api/ping')
-    //     .then(response => {
-    //       console.log(response.data);
-    //       this.content = response.data;
-    //       this.simplemde.value(response.data);
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // }
   },
 
   mounted: function mounted() {
+    var _this2 = this;
+
     var SimpleMDE = __webpack_require__(25);
 
     this.simplemde = new SimpleMDE({
@@ -40061,6 +40058,19 @@ module.exports = {
     });
 
     this.api = __webpack_require__(41);
+
+    /*
+     * Fetch document
+     */
+    this.api.get('/legal/api/documents').then(function (response) {
+      console.log(response);
+      _this2.id = response.data.id;
+      _this2.content = response.data.content;
+      _this2.simplemde.value(response.data.content);
+    }).catch(function (error) {
+      console.log(error);
+      _this2.fm('Document could not be loaded', 'error');
+    });
   }
 };
 
@@ -48166,6 +48176,27 @@ var render = function() {
           }
         },
         [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.id,
+                expression: "id"
+              }
+            ],
+            attrs: { type: "hidden", name: "id" },
+            domProps: { value: _vm.id },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.id = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
           _c("textarea", {
             directives: [
               {
