@@ -24,6 +24,7 @@ class DocumentRequest extends FormRequest
     public function rules()
     {
         return [
+            // TODO: add sometimes validation
 //            'id' => 'required',
             'content' => 'required'
         ];

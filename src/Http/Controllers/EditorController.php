@@ -17,8 +17,8 @@ class EditorController extends Controller
      */
     public function store(DocumentRequest $request)
     {
-        $document = Document::updateOrCreate(['id' => $request->input('id')], $request->all());
         // TODO: authorization
+        $document = Document::updateOrCreate(['id' => $request->input('id')], $request->all());
         return $document->toArray();
     }
 

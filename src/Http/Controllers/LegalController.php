@@ -6,6 +6,7 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Routing\Controller;
 use Sebbaum\Legal\Models\Document;
 
+// TODO: introduce document types
 class LegalController extends Controller
 {
     public function tos()

@@ -13,6 +13,8 @@
 
 <script>
 
+  // TODO extract API client
+
   module.exports = {
 
     data: function() {
