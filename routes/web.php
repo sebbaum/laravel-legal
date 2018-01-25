@@ -2,21 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/terms-of-service', function () {
-    return view('legal::tos');
-})->name('tos');
+Route::get('/terms-of-service', 'LegalController@tos')->name('tos');
 
-Route::get('/privacy-policy', function () {
-    return view('legal::pripol');
-})->name('pripol');
+Route::get('/privacy-policy', 'LegalController@pripol')->name('pripol');
 
-Route::get('/gtc', function () {
-    return view('legal::gtc');
-})->name('gtc');
-
-Route::get('/imprint', function () {
-    return view('legal::imprint');
-})->name('imprint');
+Route::get('/imprint', 'LegalController@imprint')->name('imprint');
 
 Route::get('editor', function () {
     return view('legal::editor');
