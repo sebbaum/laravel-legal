@@ -77,6 +77,11 @@ In order to use this package for development purpose add the following to compos
     * laravel
     * packages
         * legal
-        
-## Resources
+
+## Security
+If you discover a security vulnerability within this package, please send an e-mail to
+Sebastian Baum at seb.baum@googlemail.com. All security vulnerabilities will be promptly addressed.
+
+## Credits
 * [SimpleMDE](https://www.npmjs.com/package/simplemde)
+* [GrahamCampbell/Laravel-Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)
