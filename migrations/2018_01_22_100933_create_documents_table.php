@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLegalTable extends Migration
+class CreateDocumentsTable extends Migration
 {
-    const TABLE = 'legal';
+    // TODO: make table configurable
+    const TABLE = 'documents';
 
     /**
      * Run the migrations.

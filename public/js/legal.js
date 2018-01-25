@@ -40018,10 +40018,10 @@ module.exports = {
       var _this = this;
 
       var newContent = this.simplemde.value();
-      this.api.post('/legal/api/tos', {
+      this.api.post('/legal/api/document', {
         content: this.content
       }).then(function (response) {
-        _this.flash('Document saved', 'success');
+        _this.fm('Document saved', 'success');
       }).catch(function (error) {
         // console.log(error);
         _this.fm('Document could not be saved', 'error');

@@ -25,11 +25,11 @@
     methods: {
       save: function () {
         let newContent = this.simplemde.value();
-        this.api.post('/legal/api/tos', {
+        this.api.post('/legal/api/document', {
           content: this.content
         })
           .then(response => {
-            this.flash('Document saved', 'success');
+            this.fm('Document saved', 'success');
           })
           .catch(error => {
             // console.log(error);
