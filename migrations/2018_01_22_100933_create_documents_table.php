@@ -16,6 +16,8 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
+        // TODO: add different document types
+        // TODO: add versioning
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->increments('id');
             $table->text('content');
