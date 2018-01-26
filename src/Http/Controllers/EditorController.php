@@ -30,10 +30,13 @@ class EditorController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param String $type
      * @return Response
      */
-    public function fetchLatest()
+    public function fetchLatest(String $type)
     {
-        return Document::latest()->first();
+        return Document::latest()
+            ->where('type', $type)
+            ->first();
     }
 }

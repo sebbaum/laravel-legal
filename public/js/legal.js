@@ -40002,7 +40002,19 @@ module.exports = function normalizeComponent (
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+
+// TODO extract API client
 
 module.exports = {
 
@@ -40012,7 +40024,8 @@ module.exports = {
       api: null,
       id: '',
       updated_at: Date.now(),
-      content: '# Terms Of Service'
+      content: '',
+      type: 'imprint'
     };
   },
 
@@ -40021,9 +40034,9 @@ module.exports = {
       var _this = this;
 
       var newContent = this.simplemde.value();
-      // TODO send id to perform an update
       this.api.post('/legal/api/documents', {
         id: this.id,
+        type: this.type,
         content: newContent
       }).then(function (response) {
         _this.fm('Document saved', 'success');
@@ -40035,6 +40048,24 @@ module.exports = {
       });
     },
 
+    fetchDocument: function fetchDocument() {
+      var _this2 = this;
+
+      /*
+      * Fetch document
+      */
+      this.api.get('/legal/api/documents/' + this.type).then(function (response) {
+        console.log(response);
+        _this2.id = response.data.id || '';
+        _this2.content = response.data.content || '';
+        _this2.type = response.data.type || _this2.type;
+        _this2.simplemde.value(_this2.content);
+      }).catch(function (error) {
+        console.log(error);
+        _this2.fm('Document could not be loaded', 'error');
+      });
+    },
+
     fm: function fm(message, type) {
       this.flash(message, type, {
         timeout: 5000
@@ -40043,7 +40074,7 @@ module.exports = {
   },
 
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     var SimpleMDE = __webpack_require__(25);
 
@@ -40054,7 +40085,19 @@ module.exports = {
         delay: 1000
       },
       element: document.getElementById("editor"),
-      spellChecker: false
+      spellChecker: false,
+      forceSync: true,
+      renderingConfig: {
+        /*
+         * laravel-markdown configuration is also possible
+         * 'renderer' => [
+         *    'block_separator' => "\n",
+         *    'inner_separator' => "\n",
+         *    'soft_break'      => "<br>",
+         * ],
+         */
+        singleLineBreaks: false
+      }
     });
 
     this.api = __webpack_require__(41);
@@ -40062,14 +40105,15 @@ module.exports = {
     /*
      * Fetch document
      */
-    this.api.get('/legal/api/documents').then(function (response) {
+    this.api.get('/legal/api/documents/' + this.type).then(function (response) {
       console.log(response);
-      _this2.id = response.data.id;
-      _this2.content = response.data.content;
-      _this2.simplemde.value(response.data.content);
+      _this3.id = response.data.id;
+      _this3.type = response.data.type;
+      _this3.content = response.data.content;
+      _this3.simplemde.value(response.data.content);
     }).catch(function (error) {
       console.log(error);
-      _this2.fm('Document could not be loaded', 'error');
+      _this3.fm('Document could not be loaded', 'error');
     });
   }
 };
@@ -48197,26 +48241,77 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("textarea", {
-            directives: [
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "select",
               {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.content,
-                expression: "content"
-              }
-            ],
-            attrs: { id: "editor" },
-            domProps: { value: _vm.content },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.type,
+                    expression: "type"
+                  }
+                ],
+                staticClass: "form-control form-control-lg",
+                attrs: { name: "type", title: "type" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.type = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.fetchDocument
+                  ]
                 }
-                _vm.content = $event.target.value
+              },
+              [
+                _c("option", { attrs: { value: "imprint" } }, [
+                  _vm._v("Imprint")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "tos" } }, [
+                  _vm._v("Terms Of Service")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "pripol" } }, [
+                  _vm._v("Privacy Policy")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.content,
+                  expression: "content"
+                }
+              ],
+              attrs: { title: "editor", id: "editor" },
+              domProps: { value: _vm.content },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.content = $event.target.value
+                }
               }
-            }
-          }),
+            })
+          ]),
           _vm._v(" "),
           _c(
             "button",

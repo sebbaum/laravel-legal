@@ -22,4 +22,14 @@ class Document extends Model
     {
         return $builder->where('type', 'tos');
     }
+
+    public function scopePripol(Builder $builder)
+    {
+        return $builder->where('type', 'pripol');
+    }
+
+    public function scopeImprint(Builder $builder)
+    {
+        return $builder->where('type', 'imprint');
+    }
 }

@@ -17,4 +17,4 @@ Route::post('documents', 'EditorController@store');
 /**
  * Get the document
  */
-Route::get('documents', 'EditorController@fetchLatest');
+Route::get('documents/{type}', 'EditorController@fetchLatest');

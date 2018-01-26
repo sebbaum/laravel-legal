@@ -3,7 +3,7 @@
     <form @submit.prevent="save">
       <input type="hidden" v-model="id" name="id"/>
       <div class="form-group">
-        <select class="form-control form-control-lg" v-model="type" name="type" title="type">
+        <select class="form-control form-control-lg" v-model="type" name="type" title="type" @change="fetchDocument">
           <option value="imprint">Imprint</option>
           <option value="tos">Terms Of Service</option>
           <option value="pripol">Privacy Policy</option>
@@ -57,6 +57,25 @@
           });
       },
 
+      fetchDocument: function () {
+        /*
+       * Fetch document
+       */
+        this.api.get('/legal/api/documents/' + this.type)
+          .then(response => {
+            console.log(response);
+            this.id = response.data.id || '';
+            this.content = response.data.content || '';
+            this.type = response.data.type || this.type;
+            this.simplemde.value(this.content);
+          })
+          .catch(error => {
+            console.log(error);
+            this.fm('Document could not be loaded', 'error');
+          });
+
+      },
+
       fm: function (message, type) {
         this.flash(message, type, {
           timeout: 5000
@@ -94,10 +113,11 @@
       /*
        * Fetch document
        */
-      this.api.get('/legal/api/documents')
+      this.api.get('/legal/api/documents/' + this.type)
         .then(response => {
           console.log(response);
           this.id = response.data.id;
+          this.type = response.data.type;
           this.content = response.data.content;
           this.simplemde.value(response.data.content);
         })
