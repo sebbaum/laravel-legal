@@ -94,7 +94,8 @@
         },
         element: document.getElementById("editor"),
         spellChecker: false,
-        forceSync: true,
+        forceSync: false,
+        status: ['autosave'],
         renderingConfig: {
           /*
            * laravel-markdown configuration is also possible
