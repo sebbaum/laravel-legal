@@ -54,4 +54,15 @@ return [
     |
     */
     'imprint' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Name of the documents table.
+    |--------------------------------------------------------------------------
+    |
+    | The default table name of the Document's model is documents.
+    | However you can override this default name here in respect of your data
+    | structure.
+    */
+    'documents_table' => 'documents'
 ];

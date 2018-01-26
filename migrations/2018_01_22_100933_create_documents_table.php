@@ -6,9 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateDocumentsTable extends Migration
 {
-    // TODO: make table configurable
-    const TABLE = 'documents';
-
     /**
      * Run the migrations.
      *
@@ -18,7 +15,7 @@ class CreateDocumentsTable extends Migration
     {
         // TODO: add different document types
         // TODO: add versioning
-        Schema::create(self::TABLE, function (Blueprint $table) {
+        Schema::create(config('legal.documents_table'), function (Blueprint $table) {
             $table->increments('id');
             $table->text('content');
             $table->timestamps();
@@ -32,6 +29,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(self::TABLE);
+        Schema::dropIfExists(config('legal.documents_table'));
     }
 }
