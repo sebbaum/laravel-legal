@@ -17,6 +17,7 @@ class CreateDocumentsTable extends Migration
         // TODO: add versioning
         Schema::create(config('legal.documents_table'), function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type')->notNull();
             $table->text('content');
             $table->timestamps();
         });

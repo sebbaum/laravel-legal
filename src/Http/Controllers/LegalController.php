@@ -11,7 +11,9 @@ class LegalController extends Controller
 {
     public function tos()
     {
-        $document = Document::latest()->first();
+        $document = Document::latest()
+            ->tos()
+            ->first();
         $content = Markdown::convertToHtml($document->content);
         return view('legal::tos', ['content' => $content]);
     }

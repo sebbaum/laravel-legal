@@ -26,6 +26,7 @@ class DocumentRequest extends FormRequest
         return [
             // TODO: add sometimes validation
 //            'id' => 'required',
+            'type' => 'required|in:imprint,tos,pripol',
             'content' => 'required'
         ];
     }

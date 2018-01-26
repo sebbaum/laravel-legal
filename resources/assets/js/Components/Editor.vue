@@ -2,7 +2,17 @@
   <div>
     <form @submit.prevent="save">
       <input type="hidden" v-model="id" name="id"/>
-      <textarea id="editor" v-model="content"></textarea>
+      <div class="form-group">
+        <select class="form-control form-control-lg" v-model="type" name="type" title="type">
+          <option value="imprint">Imprint</option>
+          <option value="tos">Terms Of Service</option>
+          <option value="pripol">Privacy Policy</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <textarea title="editor" id="editor" v-model="content"></textarea>
+      </div>
       <button type="submit" class="btn btn-dark" name="save">Save</button>
     </form>
     <flash-message class="flashMessage"></flash-message>
@@ -23,7 +33,8 @@
         api: null,
         id: '',
         updated_at: Date.now(),
-        content: '# Terms Of Service',
+        content: '',
+        type: 'imprint'
       }
     },
 
@@ -32,6 +43,7 @@
         let newContent = this.simplemde.value();
         this.api.post('/legal/api/documents', {
           id: this.id,
+          type: this.type,
           content: newContent
         })
           .then(response => {
