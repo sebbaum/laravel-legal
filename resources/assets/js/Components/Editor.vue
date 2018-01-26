@@ -65,6 +65,14 @@
         spellChecker: false,
         forceSync: true,
         renderingConfig: {
+          /*
+           * laravel-markdown configuration is also possible
+           * 'renderer' => [
+           *    'block_separator' => "\n",
+           *    'inner_separator' => "\n",
+           *    'soft_break'      => "<br>",
+           * ],
+           */
           singleLineBreaks: false
         }
       });
