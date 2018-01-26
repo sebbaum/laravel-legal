@@ -30,7 +30,6 @@
     methods: {
       save: function () {
         let newContent = this.simplemde.value();
-        // TODO send id to perform an update
         this.api.post('/legal/api/documents', {
           id: this.id,
           content: newContent
@@ -63,7 +62,11 @@
           delay: 1000,
         },
         element: document.getElementById("editor"),
-        spellChecker: false
+        spellChecker: false,
+        forceSync: true,
+        renderingConfig: {
+          singleLineBreaks: false
+        }
       });
 
       this.api = require('axios');
