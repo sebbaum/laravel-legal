@@ -1,7 +1,7 @@
 {
-  "name": "sebbaum/legal",
+  "name": "sebbaum/laravel-legal",
   "type": "library",
-  "description": "A Laravel package to integrate and maintain legal requirements",
+  "description": "A Laravel package to integrate and maintain legal pages",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "authors": [
