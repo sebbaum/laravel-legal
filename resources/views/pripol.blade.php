@@ -2,6 +2,6 @@
 
 @section('content')
   <div class="container">
-    <h1>@lang('legal::legal.pripol')</h1>
+    {!! $content !!}
   </div>
 @endsection

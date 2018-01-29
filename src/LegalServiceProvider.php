@@ -35,6 +35,14 @@ class LegalServiceProvider extends BaseServiceProvider
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         });
+
+        Route::group([
+            'prefix' => config('legal.api', 'legal/api'),
+            'namespace' => 'Sebbaum\Legal\Http\Controllers',
+            'middleware' => 'api'
+        ], function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        });
     }
 
     /**
@@ -94,14 +102,23 @@ class LegalServiceProvider extends BaseServiceProvider
      */
     private function publishFiles()
     {
+        /*
+         * Publish configs
+         */
         $this->publishes([
             __DIR__ . '/../config/legal.php' => config_path('legal.php')
         ], 'legal-config');
 
+        /*
+         * Publish views
+         */
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/legal'),
         ], 'legal-views');
 
+        /*
+         * Publish languages/translations
+         */
         $this->publishes([
             __DIR__ . '/../resources/lang' => resource_path('lang/vendor/legal')
         ], 'legal-lang');

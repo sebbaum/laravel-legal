@@ -1,5 +1,9 @@
 # Legal
 
+<p align="center">
+<a href="https://packagist.org/packages/laravel/horizon"><img src="https://poser.pugx.org/laravel/horizon/license.svg" alt="License"></a>
+</p>
+
 ## Introduction
 In most projects you have to link legal documents (e.g. Terms of Service and Privacy Policy).
 This package integrates a legal footer and an admin section into your Laravel app.
@@ -10,6 +14,7 @@ This package integrates a legal footer and an admin section into your Laravel ap
 * Inform your customers about important changes of legal issues.
 * Let your customers reject these changes, if they are not happy with it.
 * Version your legal documents.
+* Edit your legal documents with a simple to use editor.
 * ...
 
 ## Installation
@@ -72,3 +77,11 @@ In order to use this package for development purpose add the following to compos
     * laravel
     * packages
         * legal
+
+## Security
+If you discover a security vulnerability within this package, please send an e-mail to
+Sebastian Baum at seb.baum@googlemail.com. All security vulnerabilities will be promptly addressed.
+
+## Credits
+* [SimpleMDE](https://www.npmjs.com/package/simplemde)
+* [GrahamCampbell/Laravel-Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)
