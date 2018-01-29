@@ -10,7 +10,7 @@ use Sebbaum\Legal\Http\Requests\DocumentRequest;
 class EditorController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Store a new document
      *
      * @param DocumentRequest $request
      * @return Response
@@ -28,7 +28,7 @@ class EditorController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Fetch the latest version of the given legal document type.
      *
      * @param String $type
      * @return Response

@@ -6,8 +6,14 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Routing\Controller;
 use Sebbaum\Legal\Models\Document;
 
+// TODO: need refactioring
 class LegalController extends Controller
 {
+    /**
+     * Show the latest Terms of Service.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function tos()
     {
         $content = '';
@@ -22,6 +28,11 @@ class LegalController extends Controller
         return view('legal::tos', ['content' => $content]);
     }
 
+    /**
+     * Show the latest privacy policy.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function pripol()
     {
         $content = '';
@@ -37,6 +48,11 @@ class LegalController extends Controller
         return view('legal::pripol', ['content' => $content]);
     }
 
+    /**
+     * Show the latest imprint.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function imprint()
     {
         $content = '';

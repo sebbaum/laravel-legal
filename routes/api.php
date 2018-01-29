@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | API routes for the legal management UI
 |--------------------------------------------------------------------------
-|
 */
 
 /**
@@ -15,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('documents', 'EditorController@store');
 
 /**
- * Get the document
+ * Fetch the document
  */
 Route::get('documents/{type}', 'EditorController@fetchLatest');
