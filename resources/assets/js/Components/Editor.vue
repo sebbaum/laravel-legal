@@ -22,8 +22,7 @@
 
 
 <script>
-
-  // TODO extract API client
+  let api = require('../Services/apiClient.js');
 
   module.exports = {
 
@@ -41,42 +40,34 @@
     methods: {
       save: function () {
         let newContent = this.simplemde.value();
-        this.api.post('/legal/api/documents', {
+        api.saveDocument({
           id: this.id,
           type: this.type,
           content: newContent
-        })
-          .then(response => {
-            this.fm('Document saved', 'success');
-            this.id = response.data.id;
-            this.content = response.data.content;
-          })
-          .catch(error => {
-            // console.log(error);
-            this.fm('Document could not be saved', 'error');
-          });
+        }, (response) => {
+          this.fm('Document saved', 'success');
+          this.id = response.data.id;
+          this.content = response.data.content;
+
+        }, (error) => {
+          this.fm('Document could not be saved', 'error');
+        });
       },
 
       fetchDocument: function () {
-        /*
-       * Fetch document
-       */
-        this.api.get('/legal/api/documents/' + this.type)
-          .then(response => {
-            console.log(response);
+        api.fetchDocument(this.type, (response) => {
+
             this.id = response.data.id || '';
             this.content = response.data.content || '';
             this.type = response.data.type || this.type;
             this.simplemde.value(this.content);
-          })
-          .catch(error => {
-            console.log(error);
+          },(error) => {
             this.fm('Document could not be loaded', 'error');
           });
 
       },
 
-      fm: function (message, type) {
+      fm: (message, type) => {
         this.flash(message, type, {
           timeout: 5000
         })
@@ -109,23 +100,17 @@
         }
       });
 
-      this.api = require('axios');
-
       /*
-       * Fetch document
-       */
-      this.api.get('/legal/api/documents/' + this.type)
-        .then(response => {
-          console.log(response);
-          this.id = response.data.id;
-          this.type = response.data.type;
-          this.content = response.data.content;
-          this.simplemde.value(response.data.content);
-        })
-        .catch(error => {
-          console.log(error);
-          this.fm('Document could not be loaded', 'error');
-        });
+      * Fetch document
+      */
+      api.fetchDocument(this.type, (response) => {
+        this.id = response.data.id || '';
+        this.content = response.data.content || '';
+        this.type = response.data.type || this.type;
+        this.simplemde.value(this.content);
+      },(error) => {
+        this.fm('Document could not be loaded', 'error');
+      });
     }
   };
 </script>
