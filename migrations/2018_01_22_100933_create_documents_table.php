@@ -13,7 +13,6 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        // TODO: add different document types
         // TODO: add versioning
         Schema::create(config('legal.documents_table'), function (Blueprint $table) {
             $table->increments('id');
