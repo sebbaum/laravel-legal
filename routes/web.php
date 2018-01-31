@@ -14,6 +14,8 @@ Route::get('/privacy-policy', 'LegalController@pripol')->name('pripol');
 
 Route::get('/imprint', 'LegalController@imprint')->name('imprint');
 
+
+// TODO: authentication
 Route::get('editor', function () {
     return view('legal::editor');
 })->name('editor');
