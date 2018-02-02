@@ -64,5 +64,17 @@ return [
     | However you can override this default name here in respect of your data
     | structure.
     */
-    'documents_table' => 'documents'
+    'documents_table' => 'documents',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Name of the lawyers table
+    |--------------------------------------------------------------------------
+    |
+    | Lawyers are considered as a kind of admin for all legal stuff.
+    | This table is therefore used as kind of user table for lawyer accounts
+    | and is required for protecting the legal editor with basic auth.
+    |
+    */
+    'lawyers_table' => 'lawyers',
 ];

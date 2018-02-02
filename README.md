@@ -27,6 +27,40 @@ composer require sebbaum/legal
 ### Configuration
 TODO
 
+### Authentication
+In order to protect the management UI you have to add the following in your main Laravel's `config/auth.php`
+```
+'guards' => [
+        
+        // ...
+
+        'legal' => [
+            'driver' => 'session',
+            'provider' => 'lawyers'
+        ]
+    ],
+
+    'providers' => [
+        
+        // ...
+
+        'lawyers' => [
+            'driver' => 'eloquent',
+            'model' => Sebbaum\Legal\Models\Lawyer::class,
+        ],
+    ],
+    
+    // ...
+```
+
+And in your main Laravel's `app/Http/Kernel.php` file add this to your route middleware:
+```
+protected $routeMiddleware = [
+        // ...
+        
+        'legal.auth' => LegalBasicAuth::class,
+```
+
 ### Include the legal footer
 In order to show links to your legal documents, you can include the `legal::footer` template in your own templates
 (e.g. in `layouts/app.blade.php`)
