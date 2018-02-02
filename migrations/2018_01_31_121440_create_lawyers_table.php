@@ -13,7 +13,7 @@ class CreateLawyersTable extends Migration
      */
     public function up()
     {
-        Schema::create('lawyers', function (Blueprint $table) {
+        Schema::create(config('legal.lawyers_table'), function (Blueprint $table) {
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
@@ -28,6 +28,6 @@ class CreateLawyersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lawyers');
+        Schema::dropIfExists(config('legal.lawyers_table'));
     }
 }

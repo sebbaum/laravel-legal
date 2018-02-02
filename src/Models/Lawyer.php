@@ -9,6 +9,11 @@ class Lawyer extends Authenticatable
 {
     use Notifiable;
 
+    public function getTable()
+    {
+        return config('legal.lawyers_table');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
