@@ -25,7 +25,26 @@ composer require sebbaum/legal
 
 ## Usage
 ### Configuration
-TODO
+There are several aspects of this package, that can be configured:
+* Which legal documents should be shown in the footer.
+* The names of database tables.
+
+In order to customize the configuration you can publish and override the settings.
+```
+php artisan vendor:publish --tag=legal-config
+```
+
+This will publish `legal.php` into your main Laravel application: `config/legal.php`.
+There you can change the following settings:
+* uri - URI of this package. 
+* api - URI of the API.
+* tos - Show Terms Of Service (default: true).
+* pripol- Show Privacy Policy (default: true).
+* imprint - Show an imprint (default: true).
+* documents_table - Table name of the Document model (default: documents).
+* lawyers_table - Table name of the lawyers table (default: lawyers).
+This table is used to store lawyers which are considered to be admins for the legal documents.
+Only these lawyer Users are authorized to edit legal documents.
 
 ### Authentication
 In order to protect the management UI you have to add the following in your main Laravel's `config/auth.php`
