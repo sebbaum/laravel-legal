@@ -15,7 +15,10 @@ class CreateLawyersTable extends Migration
     {
         Schema::create(config('legal.lawyers_table'), function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username')->unique();
+            $table->string('title');
+            $table->string('firstname')->notNull();
+            $table->string('surname')->notNull();
+            $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
         });

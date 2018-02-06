@@ -20,6 +20,10 @@ class Lawyer extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'password',
+        'title',
+        'firstname',
+        'surname',
+        'email',
+        'password',
     ];
 }
