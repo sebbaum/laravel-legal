@@ -4,6 +4,7 @@ namespace Sebbaum\Legal;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Sebbaum\Legal\Console\Commands\CreateLawyer;
 
 class LegalServiceProvider extends BaseServiceProvider
 {
@@ -87,6 +88,7 @@ class LegalServiceProvider extends BaseServiceProvider
     {
         $this->configure();
         $this->publishFiles();
+        $this->registerCommands();
     }
 
     /**
@@ -122,5 +124,12 @@ class LegalServiceProvider extends BaseServiceProvider
         $this->publishes([
             __DIR__ . '/../resources/lang' => resource_path('lang/vendor/legal')
         ], 'legal-lang');
+    }
+
+    private function registerCommands()
+    {
+        $this->commands([
+            CreateLawyer::class
+        ]);
     }
 }
