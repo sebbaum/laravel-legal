@@ -3,6 +3,7 @@
 namespace Sebbaum\Legal\Console\Commands;
 
 use Illuminate\Console\Command;
+use Sebbaum\Legal\Models\Lawyer;
 
 class CreateLawyer extends Command
 {
@@ -11,32 +12,39 @@ class CreateLawyer extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'legal:create-lawyer';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Create a new Lawyer';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
+     * Create a new Lawyer.
      *
      * @return mixed
      */
     public function handle()
     {
-        //
+        $this->line('Create a new Lawyer account for editing legal documents.');
+
+        $answers = [];
+        $title = $this->ask('Title (optional)', false);
+        $answers['title'] = $title === false ? '' : $title;
+        $answers['firstname'] = $this->ask('First name');
+        $answers['surname'] = $this->ask('Surename');
+        $answers['email'] = $this->ask('Email');
+        $answers['password'] = bcrypt($this->secret('Password'));
+
+        // TODO: validation
+
+        Lawyer::create($answers);
+
+        // TODO: send an email
+        // TODO: use a one time password
+
+        return true;
     }
 }
