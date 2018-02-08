@@ -3,6 +3,7 @@
 namespace Sebbaum\Legal\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Validator;
 use Sebbaum\Legal\Models\Lawyer;
 
 class CreateLawyer extends Command
@@ -38,7 +39,14 @@ class CreateLawyer extends Command
         $answers['email'] = $this->ask('Email');
         $answers['password'] = bcrypt($this->secret('Password'));
 
-        // TODO: validation
+        Validator::make($answers,
+            [
+                'firstname' => 'required',
+                'surname' => 'required',
+                'email' => 'required|email|unique:lawyers',
+                'password' => 'required'
+            ]
+        )->validate();
 
         Lawyer::create($answers);
 
