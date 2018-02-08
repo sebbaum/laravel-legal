@@ -50,8 +50,9 @@ class CreateLawyer extends Command
 
         Lawyer::create($answers);
 
+        // TODO: use a one time password (check via middleware)
+
         // TODO: send an email
-        // TODO: use a one time password
 
         return true;
     }
