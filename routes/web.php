@@ -24,7 +24,7 @@ Route::get('/imprint', 'LegalController@imprint')->name('imprint');
 | Optionally you can customize the username field by defining:
 | ['middleware' => 'auth.legal,<field-name>']
 */
-Route::group(['middleware' => 'auth.basic:legal'], function () {
+Route::group(['middleware' => ['auth.basic:legal', 'checkForcedPasswordReset']], function () {
     Route::get('editor', function () {
         return view('legal::editor');
     })->name('editor');
