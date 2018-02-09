@@ -20,6 +20,7 @@ class CreateLawyersTable extends Migration
             $table->string('surname')->notNull();
             $table->string('email')->unique();
             $table->string('password');
+            $table->boolean('force_new_password')->default(true);
             $table->timestamps();
         });
     }
