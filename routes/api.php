@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 | These routes use a basic authentication.
 |
 */
-Route::group(['middleware' => 'legal.auth'], function () {
+Route::group(['middleware' => 'auth.basic:legal'], function () {
     /**
      * Store the document.
      */
