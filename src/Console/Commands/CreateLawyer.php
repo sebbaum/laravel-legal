@@ -5,6 +5,7 @@ namespace Sebbaum\Legal\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 use Sebbaum\Legal\Models\Lawyer;
+use Sebbaum\Legal\Notifications\NotifyLawyer;
 
 class CreateLawyer extends Command
 {
@@ -37,7 +38,9 @@ class CreateLawyer extends Command
         $answers['firstname'] = $this->ask('First name');
         $answers['surname'] = $this->ask('Surename');
         $answers['email'] = $this->ask('Email');
-        $answers['password'] = bcrypt($this->secret('Password'));
+        $password = $this->secret('Password');
+        $answers['password'] = bcrypt($password);
+        $answers['notify'] = $this->confirm('Send an invite mail to the newly created lawyer?', false);
 
         Validator::make($answers,
             [
@@ -48,12 +51,13 @@ class CreateLawyer extends Command
             ]
         )->validate();
 
-        Lawyer::create($answers);
+        $lawyer = Lawyer::create($answers);
+
+        if ($answers['notify']) {
+            $lawyer->notify(new NotifyLawyer($lawyer, $password));
+        }
 
         // TODO: use a one time password (check via middleware)
-
-        // TODO: send an email
-
         return true;
     }
 }
