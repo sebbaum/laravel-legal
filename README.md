@@ -20,7 +20,7 @@ This package integrates a legal footer and an admin section into your Laravel ap
 ## Installation
 You may use Composer to install this package into your Laravel application:
 ```
-composer require sebbaum/legal
+composer require sebbaum/laravel-legal
 ```
 
 ## Usage
