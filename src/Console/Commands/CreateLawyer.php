@@ -57,7 +57,14 @@ class CreateLawyer extends Command
             $lawyer->notify(new NotifyLawyer($lawyer, $password));
         }
 
+        // TODO: show a summary before sending the mail
         // TODO: use a one time password (check via middleware)
         return true;
     }
+
+    // TODO: list lawyers
+
+    // TODO: update a lawyer
+
+    // TODO: delete a lawyer
 }

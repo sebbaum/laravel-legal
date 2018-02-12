@@ -54,16 +54,9 @@ class NotifyLawyer extends Notification
     public function toMail($notifiable)
     {
         // TODO: implement translations
-        // TODO: use a markdown view
         $appname = config('app.name');
         return (new MailMessage)
             ->subject("Lawyer registration to {$appname}")
-            ->greeting("Dear {$this->lawyer->title} {$this->lawyer->firstname} {$this->lawyer->surname}")
-            ->line("You have been granted access to edit legal pages of {$appname}.")
-            ->line('Your login credentials are as follows:')
-            ->line("Username: {$this->lawyer->email}")
-            ->line("Password: {$this->password}")
-            ->action('Login', url('/' . config('legal.uri') . '/editor'))
-            ->line('Thank you for contributing to our application!');
+            ->markdown('legal::mails.lawyerCreated', ['lawyer' => $this->lawyer, 'password' => $this->password]);
     }
 }
