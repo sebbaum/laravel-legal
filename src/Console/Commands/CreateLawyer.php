@@ -56,6 +56,7 @@ class CreateLawyer extends Command
         $inputCorrect = $this->confirm('Are these values correct?', true);
 
         if (!$inputCorrect) {
+            $this->error('No Lawyer created.');
             return false;
         }
 
