@@ -4,6 +4,7 @@ namespace Sebbaum\Legal\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Sebbaum\Legal\Models\Lawyer;
 use Sebbaum\Legal\Notifications\NotifyLawyer;
 
@@ -32,17 +33,18 @@ class CreateLawyer extends Command
     {
         $this->line('Create a new Lawyer account for editing legal documents.');
 
-        $answers = [];
+        $newLawyer = [];
         $title = $this->ask('Title (optional)', false);
-        $answers['title'] = $title === false ? '' : $title;
-        $answers['firstname'] = $this->ask('First name');
-        $answers['surname'] = $this->ask('Surename');
-        $answers['email'] = $this->ask('Email');
-        $password = $this->secret('Password');
-        $answers['password'] = bcrypt($password);
-        $answers['notify'] = $this->confirm('Send an invite mail to the newly created lawyer?', false);
+        $newLawyer['title'] = $title === false ? '' : $title;
+        $newLawyer['firstname'] = $this->ask('First name');
+        $newLawyer['surname'] = $this->ask('Surename');
+        $newLawyer['email'] = $this->ask('Email');
+//        $password = $this->secret('Password');
+        $password = Str::random(6);
+        $newLawyer['password'] = bcrypt($password);
+        $newLawyer['notify'] = $this->confirm('Send an invite mail to the newly created lawyer?', false);
 
-        Validator::make($answers,
+        Validator::make($newLawyer,
             [
                 'firstname' => 'required',
                 'surname' => 'required',
@@ -51,14 +53,15 @@ class CreateLawyer extends Command
             ]
         )->validate();
 
-        $lawyer = Lawyer::create($answers);
 
-        if ($answers['notify']) {
+
+        $lawyer = Lawyer::create($newLawyer);
+
+        if ($newLawyer['notify']) {
             $lawyer->notify(new NotifyLawyer($lawyer, $password));
         }
 
         // TODO: show a summary before sending the mail
-        // TODO: use a one time password (check via middleware)
         return true;
     }
 
