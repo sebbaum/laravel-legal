@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Route;
 | Web routes for displaying the legal ducuments and the editor.
 |--------------------------------------------------------------------------
 */
-Route::get('/terms-of-service', 'LegalController@tos')->name('tos');
+Route::get('/terms-of-service', 'LegalController@tos')->name('legal.tos');
 
-Route::get('/privacy-policy', 'LegalController@pripol')->name('pripol');
+Route::get('/privacy-policy', 'LegalController@pripol')->name('legal.pripol');
 
-Route::get('/imprint', 'LegalController@imprint')->name('imprint');
+Route::get('/imprint', 'LegalController@imprint')->name('legal.imprint');
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +27,22 @@ Route::get('/imprint', 'LegalController@imprint')->name('imprint');
 Route::group(['middleware' => ['auth.basic:legal', 'checkForcedPasswordReset']], function () {
     Route::get('editor', function () {
         return view('legal::editor');
-    })->name('editor');
+    })->name('legal.editor');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Password reset routes for lawyers
+|--------------------------------------------------------------------------
+|
+| Lawyers are forced to reset their password when they login for the first
+| time.
+*/
+Route::get('/password-reset', function () {
+    return view('legal::resetPassword');
+})->name('legal.passwordReset');
+
+Route::post('/password-reset', function () {
+    // TODO: implement Controller and Action
+    dd(request());
+})->name('legal.storeNewPassword');

@@ -19,8 +19,7 @@ class CheckForcedPasswordReset
         /** @var Lawyer $lawyer */
         $lawyer = $request->user('legal');
         if ($lawyer->isForcedToResetPassword()) {
-            dd('Lawyer must reset password!');
-            // TODO: redirect to appropriate view
+            return redirect(route('legal.passwordReset'));
         }
         return $next($request);
     }
