@@ -39,10 +39,8 @@ class CreateLawyer extends Command
         $newLawyer['firstname'] = $this->ask('First name');
         $newLawyer['surname'] = $this->ask('Surename');
         $newLawyer['email'] = $this->ask('Email');
-//        $password = $this->secret('Password');
         $password = Str::random(6);
         $newLawyer['password'] = bcrypt($password);
-        $newLawyer['notify'] = $this->confirm('Send an invite mail to the newly created lawyer?', false);
 
         Validator::make($newLawyer,
             [
@@ -53,7 +51,15 @@ class CreateLawyer extends Command
             ]
         )->validate();
 
+        $this->showSummary($newLawyer, $password);
 
+        $inputCorrect = $this->confirm('Are these values correct?', true);
+
+        if (!$inputCorrect) {
+            return false;
+        }
+
+        $newLawyer['notify'] = $this->confirm('Send an invitation email to the newly created lawyer?', false);
 
         $lawyer = Lawyer::create($newLawyer);
 
@@ -61,8 +67,35 @@ class CreateLawyer extends Command
             $lawyer->notify(new NotifyLawyer($lawyer, $password));
         }
 
-        // TODO: show a summary before sending the mail
         return true;
+    }
+
+    /**
+     * Show a summary of Lawyer's data.
+     *
+     * @param $newLawyer
+     * @param $password
+     */
+    private function showSummary($newLawyer, $password)
+    {
+        /*
+         * Summary table
+         */
+        $summary = [
+            'title' => $newLawyer['title'],
+            'firstname' => $newLawyer['firstname'],
+            'surname' => $newLawyer['surname'],
+            'email' => $newLawyer['email'],
+            'password' => $password
+        ];
+
+        $this->table([
+            'Title',
+            'First name',
+            'Surname',
+            'Email',
+            'Password'],
+            [$summary]);
     }
 
     // TODO: list lawyers
