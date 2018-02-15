@@ -38,11 +38,8 @@ Route::group(['middleware' => ['auth.basic:legal', 'checkForcedPasswordReset']],
 | Lawyers are forced to reset their password when they login for the first
 | time.
 */
-Route::get('/password-reset', function () {
-    return view('legal::resetPassword');
-})->name('legal.passwordReset');
+Route::get('/password-reset', 'ResetPasswordController@showPasswordForm')
+    ->name('legal.passwordResetForm');
 
-Route::post('/password-reset', function () {
-    // TODO: implement Controller and Action
-    dd(request());
-})->name('legal.storeNewPassword');
+Route::post('/password-reset', 'ResetPasswordController@storeNewPassword')
+    ->name('legal.storeNewPassword');

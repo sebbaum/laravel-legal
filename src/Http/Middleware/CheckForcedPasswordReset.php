@@ -19,7 +19,7 @@ class CheckForcedPasswordReset
         /** @var Lawyer $lawyer */
         $lawyer = $request->user('legal');
         if ($lawyer->isForcedToResetPassword()) {
-            return redirect(route('legal.passwordReset'));
+            return redirect(route('legal.passwordResetForm'));
         }
         return $next($request);
     }
