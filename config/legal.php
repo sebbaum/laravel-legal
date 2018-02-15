@@ -22,6 +22,7 @@ return [
     */
     'api' => env('LEGAL_API', 'legal/api'),
 
+    // TODO: put legal doc configs in the database
     /*
     |--------------------------------------------------------------------------
     | Terms Of Service
