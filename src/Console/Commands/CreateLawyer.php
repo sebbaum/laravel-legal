@@ -7,9 +7,12 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Sebbaum\Legal\Models\Lawyer;
 use Sebbaum\Legal\Notifications\LawyerCreated;
+use Sebbaum\Legal\Traits\Summary;
 
 class CreateLawyer extends Command
 {
+    use Summary;
+
     /**
      * The name and signature of the console command.
      *
@@ -70,34 +73,4 @@ class CreateLawyer extends Command
 
         return true;
     }
-
-    /**
-     * Show a summary of Lawyer's data.
-     *
-     * @param $lawyer
-     * @param $password
-     */
-    private function showSummary($lawyer, $password)
-    {
-        /*
-         * Summary table
-         */
-        $summary = [
-            'title' => $lawyer['title'],
-            'firstname' => $lawyer['firstname'],
-            'surname' => $lawyer['surname'],
-            'email' => $lawyer['email'],
-            'password' => $password
-        ];
-
-        $this->table([
-            'Title',
-            'First name',
-            'Surname',
-            'Email',
-            'Password'],
-            [$summary]);
-    }
-
-    // TODO: update a lawyer
 }
