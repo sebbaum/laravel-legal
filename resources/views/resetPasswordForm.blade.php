@@ -11,20 +11,6 @@
                         <form class="form-horizontal" method="POST" action="{{ route('legal.storeNewPassword') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('old_password') ? ' has-error' : '' }}">
-                                <label for="old-password" class="col-md-4 control-label">Old Password</label>
-
-                                <div class="col-md-6">
-                                    <input id="old-password" type="password" class="form-control" name="old_password" value="{{ $old_password or old('old_password') }}" required autofocus>
-
-                                    @if ($errors->has('old_password'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('old_password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="new-password" class="col-md-4 control-label">New Password</label>
 
@@ -39,14 +25,14 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <div class="form-group{{ $errors->has('new_password_confirmation') ? ' has-error' : '' }}">
+                                <label for="new-password-confirm" class="col-md-4 control-label">Confirm Password</label>
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    <input id="new-password-confirm" type="password" class="form-control" name="new_password_confirmation" required>
 
-                                    @if ($errors->has('password_confirmation'))
+                                    @if ($errors->has('new_password_confirmation'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        <strong>{{ $errors->first('new_password_confirmation') }}</strong>
                                     </span>
                                     @endif
                                 </div>

@@ -5,6 +5,8 @@ namespace Sebbaum\Legal\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class ResetPasswordController extends Controller
 {
@@ -27,14 +29,18 @@ class ResetPasswordController extends Controller
      */
     public function storeNewPassword(Request $request)
     {
+        Validator::make($request->all(), [
+            'new_password' => 'required|confirmed|min:6',
+        ])->validate();
+
         $lawyer = Auth::guard('legal')
             ->user();
 
-        // TODO: validation
         $lawyer->password = bcrypt($request->input('new_password'));
         $lawyer->force_reset_password = false;
         $lawyer->update();
 
-        return redirect()->intended('/legal/editor');
+        return redirect()
+            ->intended('/legal/editor');
     }
 }
