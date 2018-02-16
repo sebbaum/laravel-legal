@@ -102,6 +102,4 @@ class CreateLawyer extends Command
     // TODO: list lawyers
 
     // TODO: update a lawyer
-
-    // TODO: delete a lawyer
 }

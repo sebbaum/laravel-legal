@@ -5,6 +5,7 @@ namespace Sebbaum\Legal;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Sebbaum\Legal\Console\Commands\CreateLawyer;
+use Sebbaum\Legal\Console\DeleteLawyer;
 
 class LegalServiceProvider extends BaseServiceProvider
 {
@@ -129,7 +130,8 @@ class LegalServiceProvider extends BaseServiceProvider
     private function registerCommands()
     {
         $this->commands([
-            CreateLawyer::class
+            CreateLawyer::class,
+            DeleteLawyer::class
         ]);
     }
 }
