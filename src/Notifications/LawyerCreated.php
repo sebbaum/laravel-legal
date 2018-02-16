@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Sebbaum\Legal\Models\Lawyer;
 
-class NotifyLawyer extends Notification
+class LawyerCreated extends Notification
 {
     use Queueable;
 

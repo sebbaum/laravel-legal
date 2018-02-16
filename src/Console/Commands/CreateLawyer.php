@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Sebbaum\Legal\Models\Lawyer;
-use Sebbaum\Legal\Notifications\NotifyLawyer;
+use Sebbaum\Legal\Notifications\LawyerCreated;
 
 class CreateLawyer extends Command
 {
@@ -65,7 +65,7 @@ class CreateLawyer extends Command
         $lawyer = Lawyer::create($newLawyer);
 
         if ($newLawyer['notify']) {
-            $lawyer->notify(new NotifyLawyer($lawyer, $password));
+            $lawyer->notify(new LawyerCreated($lawyer, $password));
         }
 
         return true;
