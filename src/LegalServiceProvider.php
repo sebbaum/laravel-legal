@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Sebbaum\Legal\Console\Commands\CreateLawyer;
 use Sebbaum\Legal\Console\DeleteLawyer;
+use Sebbaum\Legal\Console\ListLawyers;
 
 class LegalServiceProvider extends BaseServiceProvider
 {
@@ -131,6 +132,7 @@ class LegalServiceProvider extends BaseServiceProvider
     {
         $this->commands([
             CreateLawyer::class,
+            ListLawyers::class,
             DeleteLawyer::class
         ]);
     }

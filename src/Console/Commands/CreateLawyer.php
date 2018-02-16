@@ -74,19 +74,19 @@ class CreateLawyer extends Command
     /**
      * Show a summary of Lawyer's data.
      *
-     * @param $newLawyer
+     * @param $lawyer
      * @param $password
      */
-    private function showSummary($newLawyer, $password)
+    private function showSummary($lawyer, $password)
     {
         /*
          * Summary table
          */
         $summary = [
-            'title' => $newLawyer['title'],
-            'firstname' => $newLawyer['firstname'],
-            'surname' => $newLawyer['surname'],
-            'email' => $newLawyer['email'],
+            'title' => $lawyer['title'],
+            'firstname' => $lawyer['firstname'],
+            'surname' => $lawyer['surname'],
+            'email' => $lawyer['email'],
             'password' => $password
         ];
 
@@ -98,8 +98,6 @@ class CreateLawyer extends Command
             'Password'],
             [$summary]);
     }
-
-    // TODO: list lawyers
 
     // TODO: update a lawyer
 }
