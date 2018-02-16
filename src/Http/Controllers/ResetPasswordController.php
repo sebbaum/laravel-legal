@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
+use Sebbaum\Legal\Notifications\PasswordUpdated;
 
 class ResetPasswordController extends Controller
 {
@@ -39,6 +39,8 @@ class ResetPasswordController extends Controller
         $lawyer->password = bcrypt($request->input('new_password'));
         $lawyer->force_reset_password = false;
         $lawyer->update();
+
+        $lawyer->notify(new PasswordUpdated($lawyer));
 
         return redirect()
             ->intended('/legal/editor');
