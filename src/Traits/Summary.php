@@ -12,7 +12,7 @@ trait Summary
      * @param $lawyer
      * @param $password
      */
-    private function showSummary($lawyer, $password)
+    private function showSummary($lawyer, $password = '*****')
     {
         $summary = [
             'title' => $lawyer['title'],

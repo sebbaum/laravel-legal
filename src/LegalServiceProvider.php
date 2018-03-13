@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Sebbaum\Legal\Console\Commands\CreateLawyer;
 use Sebbaum\Legal\Console\DeleteLawyer;
 use Sebbaum\Legal\Console\ListLawyers;
+use Sebbaum\Legal\Console\UpdateLawyer;
 
 class LegalServiceProvider extends BaseServiceProvider
 {
@@ -133,6 +134,7 @@ class LegalServiceProvider extends BaseServiceProvider
         $this->commands([
             CreateLawyer::class,
             ListLawyers::class,
+            UpdateLawyer::class,
             DeleteLawyer::class
         ]);
     }
