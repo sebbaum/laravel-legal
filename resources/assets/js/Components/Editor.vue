@@ -62,12 +62,13 @@
             this.type = response.data.type || this.type;
             this.simplemde.value(this.content);
           },(error) => {
+            console.error(error.content);
             this.fm('Document could not be loaded', 'error');
           });
 
       },
 
-      fm: (message, type) => {
+      fm: function (message, type) {
         this.flash(message, type, {
           timeout: 5000
         })
@@ -86,7 +87,7 @@
         element: document.getElementById("editor"),
         spellChecker: false,
         forceSync: false,
-        status: ['autosave'],
+        status: [],
         renderingConfig: {
           /*
            * laravel-markdown configuration is also possible

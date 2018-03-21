@@ -7,8 +7,8 @@ let client = {
       .then(response => {
         success(response);
       })
-      .catch(error => {
-        error(error);
+      .catch(response => {
+        error(response);
       });
   },
 
@@ -17,8 +17,8 @@ let client = {
       .then(response => {
         success(response);
       })
-      .catch(error => {
-        error(error);
+      .catch(response => {
+        error(response);
     });
   }
 

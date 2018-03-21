@@ -26374,7 +26374,7 @@ return jQuery;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(global) {/**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.12.9
+ * @version 1.13.0
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -39989,8 +39989,6 @@ module.exports = function normalizeComponent (
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _this3 = this;
-
 //
 //
 //
@@ -40058,19 +40056,20 @@ module.exports = {
         _this2.type = response.data.type || _this2.type;
         _this2.simplemde.value(_this2.content);
       }, function (error) {
+        console.error(error.content);
         _this2.fm('Document could not be loaded', 'error');
       });
     },
 
     fm: function fm(message, type) {
-      _this3.flash(message, type, {
+      this.flash(message, type, {
         timeout: 5000
       });
     }
   },
 
   mounted: function mounted() {
-    var _this4 = this;
+    var _this3 = this;
 
     var SimpleMDE = __webpack_require__(45);
 
@@ -40083,7 +40082,7 @@ module.exports = {
       element: document.getElementById("editor"),
       spellChecker: false,
       forceSync: false,
-      status: ['autosave'],
+      status: [],
       renderingConfig: {
         /*
          * laravel-markdown configuration is also possible
@@ -40101,12 +40100,12 @@ module.exports = {
     * Fetch document
     */
     api.fetchDocument(this.type, function (response) {
-      _this4.id = response.data.id || '';
-      _this4.content = response.data.content || '';
-      _this4.type = response.data.type || _this4.type;
-      _this4.simplemde.value(_this4.content);
+      _this3.id = response.data.id || '';
+      _this3.content = response.data.content || '';
+      _this3.type = response.data.type || _this3.type;
+      _this3.simplemde.value(_this3.content);
     }, function (error) {
-      _this4.fm('Document could not be loaded', 'error');
+      _this3.fm('Document could not be loaded', 'error');
     });
   }
 };
@@ -40122,16 +40121,16 @@ var client = {
   saveDocument: function saveDocument(data, success, error) {
     axios.post('/legal/api/documents', data).then(function (response) {
       success(response);
-    }).catch(function (error) {
-      error(error);
+    }).catch(function (response) {
+      error(response);
     });
   },
 
   fetchDocument: function fetchDocument(type, success, error) {
     axios.get('/legal/api/documents/' + type).then(function (response) {
       success(response);
-    }).catch(function (error) {
-      error(error);
+    }).catch(function (response) {
+      error(response);
     });
   }
 
