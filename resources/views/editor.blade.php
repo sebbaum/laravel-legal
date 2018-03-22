@@ -8,12 +8,12 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
   <a class="navbar-brand" href="#">Legal Editor</a>
-  <ul class="navbar-nav mr-auto">
+  <ul class="navbar-nav">
 
-    <li class="nav-item">
-      <a class="nav-link" href="/">Your site</a>
+    <li class="nav-item mr-sm-2">
+      <a class="nav-link btn btn-dark" href="/">&times;</a>
     </li>
 
   </ul>
